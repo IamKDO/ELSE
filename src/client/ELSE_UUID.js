@@ -46,94 +46,47 @@ uuid -v3 ns:URL http://www.ossp.org/
 Namesapces
 ns:URL: 6ba7b811-9dad-11d1-80b4-00c04fd430c8 / 6ba7b8119dad11d180b400c04fd430c8
 */
-var field = { 
-	'time_low'			: 0, /* 32-bit */
-	'time_mid'			: 0, /* 16-bit */
-	'time_hi'			: 0, /* 16-bit */
-	'clock_seq_hi'		: 0, /* 8-bit */
-	'clock_seq_low'	: 0, /* 8-bit */
-	'node'				: [] /* 48-bit */
-};
+// UUID namspace
+var UUID = {}
+var UUIDNS = {
+	"nil"		: "00000000-0000-0000-0000-000000000000",
+	"DNS"		: "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
+	"URL"		: "6ba7b811-9dad-11d1-80b4-00c04fd430c8"
+}
 
-var uuid = [];
-
-	function convStringToField(src) {
-		var S = src;
-		//document.write('convStringToField :'+src+'<br>');
-		field.time_low			= parseInt(S.substr(0,8), 16);
-		field.time_mid			= parseInt(S.substr(9,4), 16);
-		field.time_hi			= parseInt(S.substr(14,4), 16);
-		field.clock_seq_hi	= parseInt(S.substr(19,2), 16);
-		field.clock_seq_low	= parseInt(S.substr(21,2), 16);
-		for (var i = 0; i < 12; i+=2) {
-			field.node[i/2] = parseInt(S.substr(24+i,2), 16);;	
-		}	
-		//document.write(JSON.stringify(field)+'<br>');
-	}
-
-	function convFieldToByte() {
-		//document.write('convFieldToByte()<br>');
-		uuid[0] = (field.time_low & 0xff000000) >> 24;
-		uuid[1] = (field.time_low & 0x00ff0000) >> 16;
-		uuid[2] = (field.time_low & 0x0000ff00) >> 8;
-		uuid[3] = (field.time_low & 0x000000ff);
-		uuid[4] = (field.time_mid & 0xff00) >> 8;
-		uuid[5] = (field.time_mid & 0x00ff);
-		uuid[6] = (field.time_hi  & 0xff00) >> 8;
-		uuid[7] = (field.time_hi  & 0x00ff);
-		uuid[8] = field.clock_seq_hi;
-		uuid[9] = field.clock_seq_low;
-
-		for (var i = 0; i < 6; i++) {
-			uuid[10+i] = field.node[i];
-		}	
-		//return ($uuid);
-		//document.write(JSON.stringify(uuid)+'<br>');
-	}
-
-
-	function _UUID_BIN(sUUID) {
-		convStringToField(sUUID);
-		convFieldToByte();
-		var R = '';
-		for (var i=0; i<16; i++) {
-			var C = String.fromCharCode(uuid[i]);
-			R += C;
-		}
-		return R;
-	}
-
+_ELSE_.UUIDNS = UUIDNS;
+	
 	/**
-	 * Create and return a V3 RFC-4122 compliant UUID string.
+	 * Create and return a loose interpretation of V1 RFC-4122
+	 * compliant UUID string. Since MAC Adress is not readable
+	 * from a browser, we replace it by 48 first bits of
+	 * an md5(node).
 	 * Format : xxxxxxxx-xxxx-3xxx-xxxx-xxxxxxxxxxxx
 	 * Author : jp.decorps@epiconcept.fr
 	 */
-	function uuid1(sNode) {
+	UUID.uuid1 = function(sNode) {
 		if (sNode == undefined) sNode = "ELSE-0.1";
 		var _UUID = '';
+		var B = 0;
 		var dorg = new Date(1582, 10, 15, 0, 0, 0, 0);
 		var dnow = new Date().getTime();
 		var DTime = dnow * 10000 + 0x01B21DD213814000;
 		var SDTime = DTime.toString(16);
-		//document.write("SDTime : "+SDTime+"<br>");
 		if (SDTime.length < 15) SDTime = '0'+SDTime;
-		document.write("SDTime : "+SDTime+"<br>");
-		field.time_low = SDTime.substr(7,8);
-		_UUID = field.time_low +'-';
-
+		_UUID = SDTime.substr(7,8) + '-';
 
 		var high = parseInt(DTime / 0xffffffff).toString();
-		field.time_mid = high & 0xffff;
-		_UUID += field.time_mid.toString(16)+'-';
+		B = high & 0xffff;
+		_UUID += B.toString(16)+'-';
 
-		field.time_hi = ((high >> 16) & 0xfff) | ( 1 << 12);
-		_UUID += field.time_hi.toString(16)+'-';
+		B = ((high >> 16) & 0xfff) | ( 1 << 12);
+		_UUID += B.toString(16)+'-';
 		
-		field.clock_seq_hi = 0x80 | Math.floor(Math.random()*0x10);
-		_UUID += field.clock_seq_hi.toString(16);
+		B = 0x80 | Math.floor(Math.random()*0x10);
+		_UUID += B.toString(16);
 
-		field.clock_seq_low = Math.floor(Math.random()*0xff);
-		_UUID += field.clock_seq_low.toString(16)+'-';
+		B = Math.floor(Math.random()*0xff);
+		_UUID += B.toString(16)+'-';
 
 		// since detection of anything about the machine/browser is far to buggy,
 		// include 12 chars of the md5(node)
@@ -148,15 +101,13 @@ var uuid = [];
 	 * Format : xxxxxxxx-xxxx-3xxx-xxxx-xxxxxxxxxxxx
 	 * Author : jp.decorps@epiconcept.fr
 	 */
-	function uuid3(pNamespace, pName) {
-		//document.write('generateName :md5<br>');
+	UUID.uuid3 = function(pNamespace, pName) {
 		var s = [], itoh = '0123456789ABCDEF';
 		for (var i = 0; i <36; i++) s[i] = 0;
-		NS = '6ba7b811-9dad-11d1-80b4-00c04fd430c8';
-		var BN = _UUID_BIN(NS);
+		NS = pNamespace;
+		var BN = namespaceBin(NS);
 		var md5String = rstr2hex(rstr_md5(BN+pName));
 	
-		//document.write("UUID3::MD5 => "+md5String+"<br />");
 
 		// Conform to RFC-4122, section 4.3
 		// =================================================
@@ -191,6 +142,54 @@ var uuid = [];
 		s[8] = s[13] = s[18] = s[23] = '-';
 
 		return s.join('');
+		
+		function namespaceBin(sUUID) {
+			var uuid = [];
+			var field = { 
+				'time_low'			: 0, /* 32-bit */
+				'time_mid'			: 0, /* 16-bit */
+				'time_hi'			: 0, /* 16-bit */
+				'clock_seq_hi'		: 0, /* 8-bit */
+				'clock_seq_low'	: 0, /* 8-bit */
+				'node'				: [] /* 48-bit */
+			}
+			
+			convStringToField(sUUID);
+			convFieldToByte();
+			var R = '';
+			for (var i=0; i<16; i++) {
+				R += String.fromCharCode(uuid[i]);
+			}
+			return R;
+			
+			function convStringToField(src) {
+				var S = src;
+				field.time_low			= parseInt(S.substr(0,8), 16);
+				field.time_mid			= parseInt(S.substr(9,4), 16);
+				field.time_hi			= parseInt(S.substr(14,4), 16);
+				field.clock_seq_hi	= parseInt(S.substr(19,2), 16);
+				field.clock_seq_low	= parseInt(S.substr(21,2), 16);
+				for (var i = 0; i < 12; i+=2) {
+					field.node[i/2] = parseInt(S.substr(24+i,2), 16);;	
+				}	
+			}
+	
+			function convFieldToByte() {
+				uuid[0] = (field.time_low & 0xff000000) >> 24;
+				uuid[1] = (field.time_low & 0x00ff0000) >> 16;
+				uuid[2] = (field.time_low & 0x0000ff00) >> 8;
+				uuid[3] = (field.time_low & 0x000000ff);
+				uuid[4] = (field.time_mid & 0xff00) >> 8;
+				uuid[5] = (field.time_mid & 0x00ff);
+				uuid[6] = (field.time_hi  & 0xff00) >> 8;
+				uuid[7] = (field.time_hi  & 0x00ff);
+				uuid[8] = field.clock_seq_hi;
+				uuid[9] = field.clock_seq_low;
+				for (var i = 0; i < 6; i++) {
+					uuid[10+i] = field.node[i];
+				}
+			}
+		}
 	}
 
 	/**
@@ -198,7 +197,7 @@ var uuid = [];
 	 * Format : xxxxxxxx-xxxx-4xxx-xxxx-xxxxxxxxxxxx
 	 */
 
-	function uuid4() {
+	UUID.uuid4 = function() {
 		var s = [], itoh = '0123456789abcdef';
 		for (var i = 0; i <36; i++) s[i] = Math.floor(Math.random()*0x10);
 		// Conform to RFC-4122, section 4.4
@@ -211,4 +210,9 @@ var uuid = [];
 		return s.join('');
 	}
 
+//}
+
+_ELSE_.uuid1 = UUID.uuid1;
+_ELSE_.uuid3 = UUID.uuid3;
+_ELSE_.uuid4 = UUID.uuid4;
 
