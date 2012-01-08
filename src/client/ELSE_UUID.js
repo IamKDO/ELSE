@@ -17,35 +17,6 @@
 	============================================================================
 */
 
-
-/*
-   time_low               unsigned 32   0-3    The low field of the
-                          bit integer          timestamp
-
-   time_mid               unsigned 16   4-5    The middle field of the
-                          bit integer          timestamp
-
-   time_hi_and_version    unsigned 16   6-7    The high field of the
-                          bit integer          timestamp multiplexed
-                                               with the version number
-
-   clock_seq_hi_and_rese  unsigned 8    8      The high field of the
-   rved                   bit integer          clock sequence
-                                               multiplexed with the
-                                               variant
-
-   clock_seq_low          unsigned 8    9      The low field of the
-                          bit integer          clock sequence
-
-   node                   unsigned 48   10-15  The spatially unique
-                          bit integer          node identifier
-
-uuid -v3 ns:URL http://www.ossp.org/
-02d9e6d5-9467-382e-8f9b-9300a64ac3cd
-
-Namesapces
-ns:URL: 6ba7b811-9dad-11d1-80b4-00c04fd430c8 / 6ba7b8119dad11d180b400c04fd430c8
-*/
 // UUID namspace
 var UUID = {}
 var UUIDNS = {
@@ -54,7 +25,7 @@ var UUIDNS = {
 	"URL"		: "6ba7b811-9dad-11d1-80b4-00c04fd430c8"
 }
 
-_ELSE_.UUIDNS = UUIDNS;
+_ELSE_.UUID_NS = UUIDNS;
 	
 	/**
 	 * Create and return a loose interpretation of V1 RFC-4122
