@@ -146,12 +146,12 @@ _ELSE_.UUIDNS = UUIDNS;
 		function namespaceBin(sUUID) {
 			var uuid = [];
 			var field = { 
-				'time_low'			: 0, /* 32-bit */
-				'time_mid'			: 0, /* 16-bit */
-				'time_hi'			: 0, /* 16-bit */
-				'clock_seq_hi'		: 0, /* 8-bit */
-				'clock_seq_low'	: 0, /* 8-bit */
-				'node'				: [] /* 48-bit */
+				'time_low'     : 0, /* 32-bit */
+				'time_mid'     : 0, /* 16-bit */
+				'time_hi'      : 0, /* 16-bit */
+				'clock_seq_hi' : 0, /* 8-bit */
+				'clock_seq_low': 0, /* 8-bit */
+				'node'         : [] /* 48-bit */
 			}
 			
 			convStringToField(sUUID);
