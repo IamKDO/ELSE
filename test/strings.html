@@ -1,0 +1,32 @@
+<html>
+<head>
+<script src="../src/client/ELSE.js"></script>
+<script src="../src/client/ELSE_STRING.js"></script>
+
+</head>
+
+<body>
+	<h1>Test ELSE_STRING</h1>
+	<script>
+		with(_ELSE_) {
+			var val_3 = "Bonjour Etienne";
+			document.write('var val_3 = "Bonjour Etienne";<br>');
+			_CMND6 = "LEFT(val_3,7)";
+			document.write("Chaine à évaluer : "+ _CMND6+"<br>");
+			document.write(eval(_CMND6)+"<br>");
+			_CMND7 = "LEFT(val_3,100)";
+			document.write("Chaine à évaluer : "+ _CMND7+"<br>");
+			document.write(eval(_CMND7)+"<br>");
+			_CMND8 = "RIGHT(val_3,7)";
+			document.write("Chaine à évaluer : "+ _CMND8+"<br>");
+			document.write(eval(_CMND8)+"<br>");
+			_CMND9 = "RIGHT(val_3,12)";
+			document.write("Chaine à évaluer : "+ _CMND9+"<br>");
+			document.write(eval(_CMND9)+"<br>");
+			_CMND9 = "RIGHT(val_3,50)";
+			document.write("Chaine à évaluer : "+ _CMND9+"<br>");
+			document.write(eval(_CMND9)+"<br>");
+		}
+		</script>
+</body>
+</html>
