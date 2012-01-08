@@ -33,11 +33,62 @@ String.prototype.right = function(n) {
 	return this.substr(L-n, n);
 };
 
+// Trimming functions prototype -----------------------------------------------
+String.prototype.trim = function() {
+	return this.replace(/^\s+/, "").replace(/\s+$/, "");
+};
+
+String.prototype.ltrim = function() {
+	return this.replace(/^\s+/,"");
+};
+
+String.prototype.rtrim = function() {
+	return this.replace(/\s+$/,"");
+}
+// ----------------------------------------------------------------------------
+
+String.prototype.repeat = function(n) {
+	return new Array( n + 1 ).join( this );
+}
+
 // ELSE wrapping
+_ELSE_.CONCAT = function() {
+	var R = "";
+	// iterate through non-separator arguments
+	for (var i = 0; i < arguments.length; i++) {
+		R += arguments[i];
+	}
+ 	return R;
+}
+
 _ELSE_.LEFT = function(str, len) {
 	return str.left(len);
 };
 
+_ELSE_.LOWER = function(str) {
+	return str.toLowerCase();	
+};
+
+_ELSE_.LTRIM = function(str) {
+	return str.ltrim();	
+};
+
+_ELSE_.REPEAT = function(str, n) {
+	return str.repeat(n);
+};
+
 _ELSE_.RIGHT = function(str, len) {
 	return str.right(len);
-}
+};
+
+_ELSE_.RTRIM = function(str) {
+	return str.rtrim();
+};
+
+_ELSE_.TRIM = function(str) {
+	return str.trim();
+};
+
+_ELSE_.UPPER = function(str) {
+	return str.toUpperCase();
+};
