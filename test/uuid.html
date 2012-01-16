@@ -1,0 +1,76 @@
+<html>
+	<script src="ELIB_HASH.js"></script>
+	<script src="ELSE.js"></script>
+	<script src="ELSE_UUID.js"></script>
+	<script src="uuidv1.js"></script>
+	<script "charset=utf-8">
+		with(_ELSE_) {
+			document.write("md5 : " + md5("kdo@zpmag.com")+"<br />");
+		//document.write("MD5 (6ba7b811-9dad-11d1-80b4-00c04fd430c8 + A) : 99478e5a3f216a3bfff11def8b569bd4<br/>");
+		//document.write(_MD5("6ba7b8119dad11d180b400c04fd430c8"+"kdo@zpmag.com")+"<br />");
+		//document.write("UUID4::"+_UUID_BIN(_UUID4())+"<br />");
+		document.write("uuid1     : " + uuid1("kdo@zpmag.com")+"<br>");
+		document.write("uuid3 nil : " + uuid3(UUID_NS.nil,"kdo@zpmag.com")+"<br>");
+		document.write("uuid3 URL : " + uuid3(UUID_NS.URL,"kdo@zpmag.com")+"<br>");
+		document.write("uuid3 DNS : " + uuid3(UUID_NS.DNS,"kdo@zpmag.com")+"<br>");
+		document.write("uuid4     : " + uuid4()+"<br>");
+		}
+		/*
+		N = new UUID();
+		document.write(N+"<br>");
+		document.write("===========================================================<br>");
+		_CMND0 = "md5('epiconcept.fr')";
+		document.write("Chaine à évaluer : "+ _CMND0+"<br>");
+		document.write(eval(_CMND0)+"<br>");
+		_CMND1 = "uuid3('6ba7b811-9dad-11d1-80b4-00c04fd430c8','epiconcept.fr')";
+		document.write("Chaine à évaluer : "+ _CMND1+"<br>");
+		document.write(eval(_CMND1)+"<br>");
+		_CMND2 = "uuid4()";
+		document.write("Chaine à évaluer : "+ _CMND2+"<br>");
+		document.write(eval(_CMND2)+"<br>");
+		var val_1 = 10;
+		var val_2 = 20;
+		Number.prototype.between = function(min, max) { return (this < min || this > max) ? false : true;};
+		String.prototype.left = function(n) { if (n >= this.length) return this; return this.substr(0, n);};
+		String.prototype.right = function(n) { var L = this.length; if (n >= L) return this; return this.substr(L-n, n);};
+		document.write("var val_1 = 10; et var val_2 = 20;<br>");
+		_CMND3 = "val_1 + val_2";
+		document.write("Chaine à évaluer : "+ _CMND3+"<br>");
+		document.write(eval(_CMND3)+"<br>");
+		_CMND4 = "val_1.between(5, 9)";
+		document.write("Chaine à évaluer : "+ _CMND4+"<br>");
+		document.write(eval(_CMND4)+"<br>");
+		_CMND5 = "(val_1+val_2).between(20, 40)";
+		document.write("Chaine à évaluer : "+ _CMND5+"<br>");
+		document.write(eval(_CMND5)+"<br>");
+		var val_3 = "Bonjour Etienne";
+		document.write('var val_3 = "Bonjour Etienne";<br>');
+		_CMND6 = "val_3.left(7)";
+		document.write("Chaine à évaluer : "+ _CMND6+"<br>");
+		document.write(eval(_CMND6)+"<br>");
+		_CMND7 = "val_3.left(100)";
+		document.write("Chaine à évaluer : "+ _CMND7+"<br>");
+		document.write(eval(_CMND7)+"<br>");
+		_CMND8 = "val_3.right(7)";
+		document.write("Chaine à évaluer : "+ _CMND8+"<br>");
+		document.write(eval(_CMND8)+"<br>");
+		_CMND9 = "val_3.right(12)";
+		document.write("Chaine à évaluer : "+ _CMND9+"<br>");
+		document.write(eval(_CMND9)+"<br>");
+		val_1 = 1.414;
+		val_2 = 1.732;
+		document.write("val_1 = 1.414; val_2 = 1.732;<br>");
+		_CMNDA = "val_1.between(1.2, 1.45) && val_2.between(1.5, 1.8)";
+		document.write("Chaine à évaluer : "+ _CMNDA+"<br>");
+		document.write(eval(_CMNDA)+"<br>");
+		var sqrt = Math.sqrt;
+		_CMNDB = "sqrt(5)";
+		document.write("Chaine à évaluer : "+ _CMNDB+"<br>");
+		document.write(eval(_CMNDB)+"<br>");
+		*/
+		
+	</script>
+	<p>uuid -v3 ns:URL kdo@zpmag.com : 3588d28f-d8f8-35ee-8c24-0153a75fd209</p>
+	<p></p>
+	
+</html>
