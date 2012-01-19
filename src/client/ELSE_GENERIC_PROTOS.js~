@@ -19,37 +19,8 @@
 */
 
 // ============================================================================
-// Array
+// Class manipulation prototypes
 // ----------------------------------------------------------------------------
-
-Array.prototype.swap = function(src, dst) {
-	tmp = this[dst];
-	this[dst] = this[src];
-	this[src] = tmp;
-};
-
-Array.prototype.replace = function(dst, content) {
-	this.splice(dst,1, content); 
-}
-
-Array.prototype.moveTo = function(src, dest) {
-	if (dest >= this.length) {
-		var k = dest - this.length;
-		while ((k--) + 1) {
-			this.push(undefined);
-		}
-	}
-	this.splice(dest, 0, this.splice(src, 1)[0]);
-};
-
-Array.prototype.kill = function(indice) {
-	this.splice (indice, 1);
-};
-
-// ============================================================================
-// Node : Class manipulation prototypes
-// ----------------------------------------------------------------------------
-
 Node.prototype.hasClass = function(sClass) {
 	return this.className.match(new RegExp('(\\s|^)'+sClass+'(\\s|$)'));
 }
