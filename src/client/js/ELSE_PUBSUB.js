@@ -76,12 +76,14 @@ var PubSub = {};
 	};
     
 	/**
-	* PubSub.subscribe( message, func ) -> String
-	* - message (String): The message to subscribe to
-	* - func (Function): The function to call when a new message is published
-	* Subscribes the passed function to the passed message. Every returned token is unique and should be
-	* stored if you need to unsubscribe
-	**/
+	 * PubSub.subscribe( message, func ) -> String
+	 * Subscribes the passed function to the passed message. Every returned token is unique and should be
+	 * stored if you need to unsubscribe
+	 * 
+	 * @param	message (String): The message to subscribe to
+	 * @param	func (Function): The function to call when a new message is published
+	 * @return	token (String)
+	 **/
 	p.subscribe = function( message, func ) {
 		// message is not registered yet
 		if ( !messages.hasOwnProperty( message ) ) {
@@ -98,10 +100,12 @@ var PubSub = {};
 	};
 
 	/**
-	* PubSub.unsubscribe( token ) -> String | Boolean
-	* - token (String): The token of the function to unsubscribe
-	* Unsubscribes a specific subscriber from a specific message using the unique token
-	**/
+	 * PubSub.unsubscribe( token ) -> String | Boolean
+	 * Unsubscribes a specific subscriber from a specific message using the unique token
+	 * 
+	 * @param	token (String): The token of the function to unsubscribe
+	 * @return	token (String) | false (Boolean)
+	 **/
 	p.unsubscribe = function( token ){
 		for ( var m in messages ) {
 			if ( messages.hasOwnProperty( m ) ) {

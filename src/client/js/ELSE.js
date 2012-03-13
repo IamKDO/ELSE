@@ -16,9 +16,11 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	============================================================================
 */
+
+var _EE_ = {};
 var _ELSE_ = function() {
 
 	this.version = "0.1";
 	
-}
+};
 
