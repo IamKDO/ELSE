@@ -1,0 +1,79 @@
+<html>
+	<head>
+	<title>Test de ELSE_PUBSUB</title>
+	<script src="../src/client/js/ELSE_PUBSUB.js"></script>
+<script>
+var logToConsole = function( message, data ){
+    // once a message arrives, it'll get logged to the console
+    // data passed in messages can be whatever you want
+    //console.log( message, data );  
+};
+/*
+// every subscription gives you a token,
+// you should keep it if you want to unsubscribe
+var token = PubSub.subscribe( 'some message', logToConsole );
+
+// publishing messages is also quite easy
+PubSub.publish( 'some message', 'hello world!' );
+
+// now let's unsubscribe from this message
+PubSub.unsubscribe( token );
+*/
+
+function update(id, value) {
+	document.getElementById(id).innerHTML = parseInt(value);
+}
+
+function test() {
+	var token = [];
+
+	var startsub = new Date();
+	for (var i = 0; i < 2000; i++) {
+		token[i] = PubSub.subscribe( 'some message', logToConsole );
+	}
+	var endsub = new Date();
+	//console.info("Token len:"+token.length);
+	update("_SUBSCRIBES", 2000000 /(endsub-startsub));
+
+	var startpub = new Date();
+	for (var i = 0; i < 3000; i++) {
+		PubSub.publish( 'some message', 'hello world!'+i );
+	}
+	var endpub = new Date();
+	update("_PUBLISH", 3000000 /(endpub-startpub));
+
+	var startunsub =  new Date();
+	for (var i = 0; i < 2000; i++) {
+		PubSub.unsubscribe( token[i] );
+	}
+	var endunsub =  new Date();
+	update("_UNSUB", 2000000 /(endunsub-startunsub));
+	update("_TOTAL", 7000000 /(endunsub-startsub));
+}
+//test();
+</script>
+	
+	</head>
+	<body onload="test();">
+	<h1>Test de ELSE_PUBSUB</h1>
+	<hr/>
+	<table style="border-collapse:collapse;">
+		<tr style="border-bottom:1px solid blue">
+			<td>Nombre de subsrcibes/sec.</td>
+			<td style="text-align:right"><span id="_SUBSCRIBES"></span></td>
+		</tr>
+		<tr style="border-bottom:1px solid blue">
+			<td>Nombre de publish/sec.</td>
+			<td style="text-align:right"><span id="_PUBLISH"></span></td>
+		</tr>
+		<tr style="border-bottom:1px solid blue">
+			<td>Nombre d'unsubsrcibes/sec.</td>
+			<td style="text-align:right"><span id="_UNSUB"></span></td>
+		</tr>
+		<tr style="border-bottom:1px solid blue">
+			<td>Total opérations/sec.</td>
+			<td style="text-align:right"><span id="_TOTAL"></span></td>
+		</tr>
+	</table>
+	</body>
+</html>
