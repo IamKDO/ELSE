@@ -19,18 +19,18 @@ function test() {
 
 	var startsub = new Date();
 	for (var i = 0; i < 2000; i++) {
-		token[i] = PubSub.subscribe( 'some message', logToConsole );
+		token[i] = PubSub.subscribe( 'some message'+parseInt(i*0.1), logToConsole );
 	}
 	var endsub = new Date();
 	//console.info("Token len:"+token.length);
 	update("_SUBSCRIBES", 2000000 /(endsub-startsub));
 
 	var startpub = new Date();
-	for (var i = 0; i < 3000; i++) {
-		PubSub.publish( 'some message', 'hello world!'+i );
+	for (var i = 0; i < 2000; i++) {
+		PubSub.publish( 'some message'+parseInt(i*0.1), 'hello world!'+i );
 	}
 	var endpub = new Date();
-	update("_PUBLISH", 3000000 /(endpub-startpub));
+	update("_PUBLISH", 2000000 /(endpub-startpub));
 
 	var startunsub =  new Date();
 	for (var i = 0; i < 2000; i++) {
@@ -38,7 +38,7 @@ function test() {
 	}
 	var endunsub =  new Date();
 	update("_UNSUB", 2000000 /(endunsub-startunsub));
-	update("_TOTAL", 7000000 /(endunsub-startsub));
+	update("_TOTAL", 6000000 /(endunsub-startsub));
 }
 //test();
 </script>
@@ -47,7 +47,7 @@ function test() {
 	<body onload="test();">
 	<h1>Test de ELSE_PUBSUB</h1>
 	<hr/>
-	<table style="border-collapse:collapse;">
+	<table style="border-collapse:collapse;width:50%">
 		<tr style="border-bottom:1px solid blue">
 			<td>Nombre de subsrcibes/sec.</td>
 			<td style="text-align:right"><span id="_SUBSCRIBES"></span></td>
