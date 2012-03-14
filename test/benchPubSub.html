@@ -3,22 +3,12 @@
 	<title>Test de ELSE_PUBSUB</title>
 	<script src="../src/client/js/ELSE_PUBSUB.js"></script>
 <script>
+"use strict";
 var logToConsole = function( message, data ){
     // once a message arrives, it'll get logged to the console
     // data passed in messages can be whatever you want
     //console.log( message, data );  
 };
-/*
-// every subscription gives you a token,
-// you should keep it if you want to unsubscribe
-var token = PubSub.subscribe( 'some message', logToConsole );
-
-// publishing messages is also quite easy
-PubSub.publish( 'some message', 'hello world!' );
-
-// now let's unsubscribe from this message
-PubSub.unsubscribe( token );
-*/
 
 function update(id, value) {
 	document.getElementById(id).innerHTML = parseInt(value);
