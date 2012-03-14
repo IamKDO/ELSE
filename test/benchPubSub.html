@@ -19,7 +19,7 @@ function test() {
 
 	var startsub = new Date();
 	for (var i = 0; i < 2000; i++) {
-		token[i] = PubSub.subscribe( 'some message'+parseInt(i*0.1), logToConsole );
+		token[i] = PubSub.subscribe( 'some message'+parseInt(i*1), logToConsole );
 	}
 	var endsub = new Date();
 	//console.info("Token len:"+token.length);
@@ -27,7 +27,7 @@ function test() {
 
 	var startpub = new Date();
 	for (var i = 0; i < 2000; i++) {
-		PubSub.publish( 'some message'+parseInt(i*0.1), 'hello world!'+i );
+		PubSub.publish( 'some message'+parseInt(i*1), 'hello world!'+i );
 	}
 	var endpub = new Date();
 	update("_PUBLISH", 2000000 /(endpub-startpub));
