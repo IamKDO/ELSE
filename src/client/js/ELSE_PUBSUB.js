@@ -120,3 +120,19 @@ var PubSub = {};
 		return false;
 	};
 }(PubSub));
+
+function clone(src) {
+	// Appel du constructeur de l'instance source pour crée une nouvelle instance de la même classe
+	//var srcInstance = this;
+	if(typeof(src) != 'object' || src == null) {
+		return srcInstance;
+	}
+	var newInstance = src.constructor();
+	/*On parcourt les propriétés de l'objet et on les recopies dans la nouvelle instance*/
+	for(var i in src) {
+		newInstance[i] = src[i].clone();
+	}
+	return newInstance;
+}
+
+var _EE_PS = clone(PubSub);
