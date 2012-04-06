@@ -1,0 +1,31 @@
+<html>
+	<head>
+	<title>Test de classe standardPing par un Worker</title>
+<script>
+function Foo(a, b) {
+	var private = {
+		"A" : a,
+		"B"	: b
+	};
+	this.get = function(item) {return(private[item]);}
+	this.set = function(item, val) {private[item] = val;}
+}
+
+Foo.prototype.add = function() {
+	alert(this.get("A") + this.get("B"));
+}
+Foo.prototype.mul = function() {
+	alert(this.get("A") * this.get("B"));
+}
+O = new Foo(5,6);
+O.add();
+O.mul();
+
+</script>
+	</head>
+	<body>
+	<h1>Test de class</h1>
+	<hr/>
+	<div id="connect"></div>
+	</body>
+</html>

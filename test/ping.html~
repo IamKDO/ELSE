@@ -17,7 +17,7 @@ _WK_01.onmessage = function(e) {
 	}
     document.getElementById("connect").innerHTML = PSMSG;
 };  
-_WK_01.postMessage({"WKACTION":"START","WKDATA":"http://media.ubiquitools.com/pingme.php"});
+_WK_01.postMessage({"WKACTION":"START","WKDATA":"http://82.247.160.14/ELSE/test/pingme.php"});
 //_WK_01.postMessage({"WKACTION":"STOP"});
 
 </script>

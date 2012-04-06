@@ -28,7 +28,8 @@ self.onmessage = function(e) {
 		AJAX.send(null);
 		var response = AJAX.responseText;
 		if (response != '') {
-			//self.postMessage(response);	
+			console.log(response);
+			self.postMessage(response);	
 			var J = JSON.parse(response);
 			if (J.token == TS) {
 				self.postMessage({"connect":"OK"});	
