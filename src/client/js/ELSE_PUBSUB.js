@@ -123,7 +123,6 @@ var PubSub = {};
 
 function clone(src) {
 	// Appel du constructeur de l'instance source pour crée une nouvelle instance de la même classe
-	//var srcInstance = this;
 	if(typeof(src) != 'object' || src == null) {
 		return srcInstance;
 	}

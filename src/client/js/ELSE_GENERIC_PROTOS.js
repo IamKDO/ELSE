@@ -19,6 +19,28 @@
 */
 
 // ============================================================================
+// Function
+// ----------------------------------------------------------------------------
+Function.prototype.createDelegate = function(scope) {
+	var fn = this;
+	return function() {
+		// Forward to the original function using 'scope' as 'this'.
+		return fn.apply(scope, arguments);
+	};
+};
+
+Function.prototype.repeat = function(delay,args,scope){
+	var fn = this.createDelegate(scope||window,args);
+	return setInterval(fn, delay);
+};
+
+Function.prototype.defer = function(delay, scope, args) {
+	var fn = this.createDelegate(scope, args);
+	return setTimeout(fn, delay);
+	fn();
+};
+
+// ============================================================================
 // Array
 // ----------------------------------------------------------------------------
 

@@ -17,10 +17,11 @@
 	============================================================================
 */
 
-var _EE_ = {};
-var _ELSE_ = function() {
+var _ELSE_ = {};
+(function() {
 
-	this.version = "0.1";
+	version : "0.1";
+	_CNX_MANAGER:{};
 	
-};
+}(_ELSE_));
 
