@@ -31,21 +31,18 @@
 	included in all copies or substantial portions of the Software.
 */
 
-var PubSub = {};
-(function(p) {
-    
-	p.version = "1.0.1";
-    
+_ELSE_._PUBSUB = function() {
+
 	var messages = {};
 	var lastUid = -1;
-    
-	var publish = function( message, data, sync ) {
+
+	function publish(message, data) {
 		// if there are no subscribers to this message, just return here
 		if ( !messages.hasOwnProperty( message ) ) {
 			return false;
 		}
 
-		var deliverMessage = function() {
+		function deliverMessage() {
 			var subscribers = messages[message];
 			var throwException = function(e) {
 				return function() {
@@ -65,18 +62,15 @@ var PubSub = {};
 	};
 
 	/**
-	* PubSub.publish( message[, data] ) -> Boolean
-	* - message (String): The message to publish
-	* - data: The data to pass to subscribers
-	* - sync (Boolean): Forces publication to be syncronous, which is more confusing, but faster
-	* Publishes the the message, passing the data to it's subscribers
-	**/
-	p.publish = function( message, data ){
-		return publish( message, data, false );
-	};
+	 * Publishes the message, passing the data to it's subscribers
+	 * @param message (String): The message to publish
+	 * @param data: The data to pass to subscribers
+	 **/
+	this._PUB = function( message, data ){
+		return publish(message, data);
+	},
     
 	/**
-	 * PubSub.subscribe( message, func ) -> String
 	 * Subscribes the passed function to the passed message. Every returned token is unique and should be
 	 * stored if you need to unsubscribe
 	 * 
@@ -84,7 +78,7 @@ var PubSub = {};
 	 * @param	func (Function): The function to call when a new message is published
 	 * @return	token (String)
 	 **/
-	p.subscribe = function( message, func ) {
+	this._SUB = function( message, func ) {
 		// message is not registered yet
 		if ( !messages.hasOwnProperty( message ) ) {
 			messages[message] = [];
@@ -97,16 +91,15 @@ var PubSub = {};
         
 		// return token for unsubscribing
 		return token;
-	};
+	},
 
 	/**
-	 * PubSub.unsubscribe( token ) -> String | Boolean
 	 * Unsubscribes a specific subscriber from a specific message using the unique token
 	 * 
 	 * @param	token (String): The token of the function to unsubscribe
 	 * @return	token (String) | false (Boolean)
 	 **/
-	p.unsubscribe = function( token ){
+	this._UNSUB = function(token) {
 		for ( var m in messages ) {
 			if ( messages.hasOwnProperty( m ) ) {
 				for ( var i = 0, j = messages[m].length; i < j; i++ ) {
@@ -118,20 +111,7 @@ var PubSub = {};
 			}
 		}
 		return false;
-	};
-}(PubSub));
-
-function clone(src) {
-	// Appel du constructeur de l'instance source pour crée une nouvelle instance de la même classe
-	if(typeof(src) != 'object' || src == null) {
-		return srcInstance;
 	}
-	var newInstance = src.constructor();
-	/*On parcourt les propriétés de l'objet et on les recopies dans la nouvelle instance*/
-	for(var i in src) {
-		newInstance[i] = src[i].clone();
-	}
-	return newInstance;
-}
+};
 
-var _EE_PS = clone(PubSub);
+

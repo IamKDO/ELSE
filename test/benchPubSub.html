@@ -1,9 +1,11 @@
 <html>
 	<head>
 	<title>Test de ELSE_PUBSUB</title>
-	<script src="../src/client/js/ELSE_PUBSUB.js"></script>
+	<script src="../src/client/js/ELSE.js"></script>
+	<script src="../src/client/js/ELSE_PUBSUB-min.js"></script>
 <script>
 "use strict";
+var _EE_PS = new _ELSE_._PUBSUB();
 var logToConsole = function( message, data ){
     // once a message arrives, it'll get logged to the console
     // data passed in messages can be whatever you want
@@ -19,7 +21,7 @@ function test() {
 
 	var startsub = new Date();
 	for (var i = 0; i < 2000; i++) {
-		token[i] = PubSub.subscribe( 'some message'+parseInt(i*1), logToConsole );
+		token[i] = _EE_PS._SUB( 'some message'+parseInt(i*1), logToConsole );
 	}
 	var endsub = new Date();
 	//console.info("Token len:"+token.length);
@@ -27,14 +29,14 @@ function test() {
 
 	var startpub = new Date();
 	for (var i = 0; i < 2000; i++) {
-		PubSub.publish( 'some message'+parseInt(i*1), 'hello world!'+i );
+		_EE_PS._PUB( 'some message'+parseInt(i*1), 'hello world!'+i );
 	}
 	var endpub = new Date();
 	update("_PUBLISH", 2000000 /(endpub-startpub));
 
 	var startunsub =  new Date();
 	for (var i = 0; i < 2000; i++) {
-		PubSub.unsubscribe( token[i] );
+		_EE_PS._UNSUB( token[i] );
 	}
 	var endunsub =  new Date();
 	update("_UNSUB", 2000000 /(endunsub-startunsub));
