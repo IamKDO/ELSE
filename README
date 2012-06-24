@@ -1,1 +1,19 @@
 ELSE is intended to provides a Javascript framework for mobiles web forms based applications.
+
+Components
+	ELSE_TEA-min.js
+	ELSE_StorageManager-min.js
+
+
+ELSE_TEA
+	Handle xxTea crypt engine
+	Depends : none
+
+
+ELSE_StorageManager
+	Manage localStorage and sessionStorage.
+	Depends :
+		ELSE.js
+		ELSE_TEA.js
+
+
