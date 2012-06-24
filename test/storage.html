@@ -1,0 +1,34 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>Test de xxTEA</title>
+	<script src="gpl48.js"></script>
+	<script src="../src/client/js/ELSE.js"></script>
+	<script src="../src/client/js/ELSE_TEA-min.js"></script>
+	<script src="../src/client/js/ELSE_StorageManager.js"></script>
+
+	<script>
+		function test() {
+			with (_ELSE_) {
+				document.write("Initialize<br>");
+				SM.initialize(true, "a21251f65f2bcd4855652b6706dc03a9fc6e6c75");
+				document.write("L_WRITE::Email:kdo@zpmag.com<br>");
+				SM.L_WRITE("Email", "kdo@zpmag.com");
+				document.write("Store as :"+window.localStorage["Email"]+"<br>");
+				document.write("L_READ::Email:"+SM.L_READ("Email")+"<br>");
+				document.write("S_WRITE::Email:kdo@zpmag.com<br>");
+				SM.S_WRITE("Email", "kdo@zpmag.com");
+				document.write("S_READ::Email:"+SM.S_READ("Email")+"<br>");
+				
+			}
+		}
+	</script>
+	</head>
+	<body>
+		<h1>Test de StorageManager</h1>
+		<hr>
+		<script>test()</script>
+		
+	<hr>
+	</table>
+</body>
+</html>
