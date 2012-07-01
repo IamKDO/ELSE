@@ -1,23 +1,56 @@
 ELSE is intended to provides a Javascript framework for mobiles web forms based applications.
 
 Components
+	ELSE_HASH-min.js
 	ELSE_TEA-min.js
 	ELSE_PUBSUB.js
 	ELSE_StorageManager-min.js
 
+ELSE_HASH [_SINGLETON_]
+	Implements hash functions (md5 & sha1)
+	Depends : ELSE.js
+	Public API :
+		_ELSE_.HASH.md5(utf8_string s);
+		_ELSE_.HASH.raw_md5(raw_string s);
+		_ELSE_.HASH.sha1(utf8_string s);
+		_ELSE_.HASH.raw_sha1(raw_string s);
+	Aliases :
+		_ELSE_.md5(utf8_string s);
+		_ELSE_.sha1(utf8_string s);
+		_ELSE_.raw_md5(raw_string s);
+		_ELSE_.raw_sha1(raw_string s);
 
 ELSE_TEA [_SINGLETON_]
-	Handle xxTea crypt engine
-	Depends : none
-
+	Implements xxTea crypt engine
+	Depends : ELSE.js
+	Public API :
+		_ELSE_._XXTEA.encrypt(string plaintext, string password);
+		_ELSE_._XXTEA.decrypt(ciphertext, password);
+	Aliases :
+		_ELSE_.encrypt(string plaintext, string password);
+		_ELSE_.decrypt(ciphertext, password);
+		
 ELSE_PUBSUB [_CLASS_]
-	Handle publish / subscribe
-	Depends : none
-
+	Implements publish / subscribe
+	Depends : ELSE.js
+	Public API :
+		_PUB(message, data);
+		_SUB(message, func);
+		_UNSUB(token);
+		
 ELSE_StorageManager [_SINGLETON_]
 	Manage localStorage and sessionStorage.
 	Depends :
 		ELSE.js
 		ELSE_TEA.js
-
+	Public API :
+		_ELSE_.SM.initialize(bUseCrypt, sCryptKey);
+		_ELSE_.SM.L_WRITE(K, V, bIsObject);
+		_ELSE_.SM.L_READ(K, bAsObject);
+		_ELSE_.SM.L_DELETE(K);
+		_ELSE_.SM.L_CLEAR();
+		_ELSE_.SM.S_WRITE(K, V);
+		_ELSE_.SM.S_READ(K);
+		_ELSE_.SM.S_DELETE(K);
+		_ELSE_.SM.S_CLEAR();
 
