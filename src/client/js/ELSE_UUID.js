@@ -23,7 +23,7 @@ var UUIDNS = {
 	"nil"		: "00000000-0000-0000-0000-000000000000",
 	"DNS"		: "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
 	"URL"		: "6ba7b811-9dad-11d1-80b4-00c04fd430c8"
-}
+};
 
 _ELSE_.UUID_NS = UUIDNS;
 	
@@ -65,7 +65,7 @@ _ELSE_.UUID_NS = UUIDNS;
 		_UUID += md5(sNode).substr(0,12);
 
 		return _UUID;
-	}
+	};
 	
 	/**
 	 * Create and return a V3 RFC-4122 compliant UUID string.
@@ -107,7 +107,7 @@ _ELSE_.UUID_NS = UUIDNS;
 		s[19] = s[19].toString(16);
 
 		//Set octets zero through five of the node field to octets 10 through 15 of the hash.
-		for (var i=0; i<12; i++) s[i+24] = md5String[i+20]
+		for (var i=0; i<12; i++) s[i+24] = md5String[i+20];
 
 		// Insert '-'s
 		s[8] = s[13] = s[18] = s[23] = '-';
@@ -123,7 +123,7 @@ _ELSE_.UUID_NS = UUIDNS;
 				'clock_seq_hi' : 0, /* 8-bit */
 				'clock_seq_low': 0, /* 8-bit */
 				'node'         : [] /* 48-bit */
-			}
+			};
 			
 			convStringToField(sUUID);
 			convFieldToByte();
@@ -161,7 +161,7 @@ _ELSE_.UUID_NS = UUIDNS;
 				}
 			}
 		}
-	}
+	};
 
 	/**
 	 * Create and return a V4 RFC-4122 compliant UUID string.
@@ -179,7 +179,7 @@ _ELSE_.UUID_NS = UUIDNS;
 		// Insert '-'s
 		s[8] = s[13] = s[18] = s[23] = '-';
 		return s.join('');
-	}
+	};
 
 //}
 
