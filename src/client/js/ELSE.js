@@ -18,10 +18,4 @@
 */
 
 var _ELSE_ = {};
-(function() {
-
-	version : "0.1";
-	_CNX_MANAGER:{};
-	
-}(_ELSE_));
 

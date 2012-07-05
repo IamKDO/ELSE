@@ -387,7 +387,7 @@ function str2rstr_utf16be(input) {
 		raw_md5 : function(s) {
 			return rstr2hex(rstr_md5(s));
 		}
-	}
+	};
 
 }());
 

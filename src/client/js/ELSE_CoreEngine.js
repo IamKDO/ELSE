@@ -18,5 +18,26 @@
 	============================================================================
 */
 
-_EE_.STMNGR = new StorageManager();
+//_EE_.STMNGR = new StorageManager();
 
+_ELSE_._CORE_ENGINE = (function() {
+
+	var PS_CE = new _ELSE_._PUBSUB();
+	
+	function _saveData(data) {
+		
+	}
+	
+	return {
+		
+
+		init	: function() {
+			_ELSE_.SM = _ELSE_._STORAGE_MANAGER;
+			
+			PS_CE._PUB("CORE::INIT", null);
+			
+			PS_CE._SUB("FORM::SAVE", _saveData);
+		}
+
+	};
+}());

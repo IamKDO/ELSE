@@ -184,9 +184,8 @@ _ELSE_._STORAGE_MANAGER = (function() {
 			window.sessionStorage.clear();
 		},
 
-	}
+	};
 
 }());
 
-_ELSE_.SM = _ELSE_._STORAGE_MANAGER;
 
