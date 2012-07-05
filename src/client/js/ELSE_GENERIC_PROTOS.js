@@ -52,7 +52,7 @@ Array.prototype.swap = function(src, dst) {
 
 Array.prototype.replace = function(dst, content) {
 	this.splice(dst,1, content); 
-}
+};
 
 Array.prototype.moveTo = function(src, dest) {
 	if (dest >= this.length) {
@@ -74,19 +74,19 @@ Array.prototype.kill = function(indice) {
 
 Node.prototype.hasClass = function(sClass) {
 	return this.className.match(new RegExp('(\\s|^)'+sClass+'(\\s|$)'));
-}
+};
 
 Node.prototype.addClass = function(sClass) {
 	if (!this.hasClass(sClass)) {
 		this.className += " "+sClass;
 	}
-}
+};
 
 Node.prototype.removeClass = function(sClass) {
 	if (this.hasClass(sClass)) {
 		var reg = new RegExp('(\\s|^)'+sClass+'(\\s|$)');
 		this.className = this.className.replace(reg,' ');
 	}
-}
+};
 //=============================================================================
 

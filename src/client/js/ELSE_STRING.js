@@ -44,12 +44,12 @@ String.prototype.ltrim = function() {
 
 String.prototype.rtrim = function() {
 	return this.replace(/\s+$/,"");
-}
+};
 // ----------------------------------------------------------------------------
 
 String.prototype.repeat = function(n) {
 	return new Array( n + 1 ).join( this );
-}
+};
 
 // ELSE wrapping
 _ELSE_.CONCAT = function() {
@@ -59,7 +59,7 @@ _ELSE_.CONCAT = function() {
 		R += arguments[i];
 	}
  	return R;
-}
+};
 
 _ELSE_.LEFT = function(str, len) {
 	return str.left(len);

@@ -35,5 +35,5 @@ var _ELSE_ = {
 	
 	_T.init = function() {
 		alert(_ELSE_.author);
-	}
+	};
 }(_ELSE_._CNXMANAGER));
