@@ -111,7 +111,7 @@ _ELSE_._PUBSUB = function() {
 			}
 		}
 		return false;
-	}
+	};
 };
 
 

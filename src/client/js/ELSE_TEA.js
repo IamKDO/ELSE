@@ -263,7 +263,7 @@ _ELSE_._XXTEA = (function() {
 
 			return UTF8_decode(plaintext);
 		}
-	}
+	};
 
 }());
 
