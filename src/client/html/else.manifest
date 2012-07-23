@@ -1,6 +1,19 @@
 CACHE MANIFEST
  
-# Version 0.8.1
+# Version 0.55.250
  
 index.html
-../lib/ELSE_LIB-min.js
+login.html
+# jquery -----------------------------------------------------
+#../libs/jquery-mobile/else-theme-1.min.css
+../libs/jquery-mobile/jquery-1.7.2.min.js
+../libs/jquery-mobile/jquery.mobile-1.1.1.min.js
+../libs/jquery-mobile/jquery.mobile-1.1.1.min.css
+../libs/jquery-mobile/images/ajax-loader.gif
+../libs/jquery-mobile/images/ajax-loader.png
+../libs/jquery-mobile/images/icons-18-black.png
+../libs/jquery-mobile/images/icons-18-white.png
+../libs/jquery-mobile/images/icons-36-black.png
+../libs/jquery-mobile/images/icons-36-white.png
+# ELSE LIB
+../libs/ELSE_LIB-min.js

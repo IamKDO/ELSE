@@ -1,13 +1,50 @@
 <!DOCTYPE html>
 <html manifest="else.manifest">
 	<head>
-		<script src="../lib/ELSE_LIB-min.js"></script>
+		<!-- <link rel="stylesheet" href="../libs/jquery-mobile/else-theme-1.min.css" />-->
+		<script src="../libs/jquery-mobile/jquery-1.7.2.min.js"></script>
+		<script src="../libs/jquery-mobile/jquery.mobile-1.1.1.min.js"></script>
+		<script src="../libs/ELSE_LIB-min.js"></script>
+		<link rel="stylesheet" href="../libs/jquery-mobile/jquery.mobile-1.1.1.min.css" />
 		<link rel="apple-touch-icon-precomposed" href="../assets/webapp_icon.png"/>
 		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-touch-fullscreen" content="yes">	</head>
+		<script>
+			var SM = _ELSE_._STORAGE_MANAGER;
+			var _TESTME_ = "Bonjour";
+			SM.S_WRITE('_TESTME_', _TESTME_);
+		</script>
 <body>
-	<h1>ELSE 1.0</h1>
+	<!--
+		# Menu principal 
+	-->
+	<div id="main">
+		<div data-theme="a" data-role="header" data-position="fixed">
+			<h3>ELSE Collector V0.1</h3>
+		</div>
+		<div data-role="content" style="padding: 15px">
+			<ul data-role="listview" data-divider-theme="b" data-inset="true">
+				<li data-role="list-divider" role="heading">Work On Existing Forms</li>
+				<li data-theme="c"><a href="javascript:alert('Fill Blanck Form');" data-transition="slide">Fill Blanck Form</a></li>
+				<li data-theme="c"><a href="#formlist" data-transition="slide">Edit Saved Form</a></li>
+				<li data-theme="c"><a href="#page1" data-transition="slide">Send Finalized Forms</a></li>
+				<li data-theme="c"><a href="#page1" data-transition="slide">Get Blank Form</a></li>
+			</ul>
+		</div>
+		<div data-role="content" style="padding: 15px">
+			<ul data-role="listview" data-divider-theme="b" data-inset="true" style="FONT-FAMILY: 'Abyssinica SIL';">
+				<li data-role="list-divider" role="heading">Configuration</li>
+				<li data-theme="c"><a href="#page1" data-transition="slide">Language</a></li>
+				<li data-theme="c"><a href="#serverconf" data-transition="slide">Server URL</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="projects" class="page">
+		<h1>List of projects</h1>
+	</div>
 
+	<h1>ELSE 1.0</h1>
+	<a href="login.html">Go to login 3</a>
 </body>
 </html>
